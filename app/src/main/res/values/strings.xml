@@ -9,11 +9,14 @@
 
     <string name="menu_home">Home</string>
     <string name="overview_of_scope_scheduling">Overview of Scope Scheduling</string>
+    <string name="overview">Overview</string>
     <string name="no_scope">No Scope</string>
+    <string name="add_scope">Add Scope</string>
     <string name="scope_img" translatable="false">Scope Image</string>
     <string name="prev_btn" translatable="false">Previous button</string>
     <string name="next_btn" translatable="false">Next button</string>
-    <string name="add_scope" translatable="false">Add scope</string>
+
+    <string name="add">Add</string>
 
 
     <string name="menu_gallery">Gallery</string>
