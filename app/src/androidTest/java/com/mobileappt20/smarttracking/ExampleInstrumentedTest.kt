@@ -1,4 +1,4 @@
-package com.yjh.smarttracking
+package com.mobileappt20.smarttracking
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

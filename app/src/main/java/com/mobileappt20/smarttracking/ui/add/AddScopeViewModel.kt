@@ -1,4 +1,4 @@
-package com.yjh.smarttracking.ui.add
+package com.mobileappt20.smarttracking.ui.add
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

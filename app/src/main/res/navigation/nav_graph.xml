@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_overview_scope"
-        android:name="com.yjh.smarttracking.ui.overview.OverviewScopeFragment"
+        android:name="com.mobileappt20.smarttracking.ui.overview.OverviewScopeFragment"
         android:label="@string/overview"
         tools:layout="@layout/fragment_overview_scope" >
         <action
@@ -17,13 +17,13 @@
 
     <fragment
         android:id="@+id/nav_add_scope"
-        android:name="com.yjh.smarttracking.ui.add.AddScopeFragment"
+        android:name="com.mobileappt20.smarttracking.ui.add.AddScopeFragment"
         android:label="@string/add_scope"
         tools:layout="@layout/fragment_add_scope"/>
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.yjh.smarttracking.ui.slideshow.SlideshowFragment"
+        android:name="com.mobileappt20.smarttracking.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>

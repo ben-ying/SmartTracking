@@ -1,4 +1,4 @@
-package com.yjh.smarttracking.ui.home
+package com.mobileappt20.smarttracking.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.yjh.smarttracking.databinding.FragmentHomeBinding
-import com.yjh.smarttracking.ui.overview.OverviewScopeViewModel
+import com.mobileappt20.smarttracking.databinding.FragmentHomeBinding
+import com.mobileappt20.smarttracking.ui.overview.OverviewScopeViewModel
 
 class HomeFragment : Fragment() {
 

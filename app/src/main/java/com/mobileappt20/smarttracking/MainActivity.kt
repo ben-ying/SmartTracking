@@ -1,4 +1,4 @@
-package com.yjh.smarttracking
+package com.mobileappt20.smarttracking
 
 import android.os.Bundle
 import android.view.Menu
@@ -10,7 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.yjh.smarttracking.databinding.ActivityMainBinding
+import com.mobileappt20.smarttracking.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_overview_scope, R.id.nav_add_scope, R.id.nav_slideshow
+                R.id.nav_overview_scope, R.id.nav_slideshow
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

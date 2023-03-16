@@ -1,4 +1,4 @@
-package com.yjh.smarttracking.ui.slideshow
+package com.mobileappt20.smarttracking.ui.slideshow
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.yjh.smarttracking.databinding.FragmentSlideshowBinding
+import com.mobileappt20.smarttracking.databinding.FragmentSlideshowBinding
 
 class SlideshowFragment : Fragment() {
 

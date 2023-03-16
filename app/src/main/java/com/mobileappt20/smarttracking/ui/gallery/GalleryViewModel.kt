@@ -1,4 +1,4 @@
-package com.yjh.smarttracking.ui.gallery
+package com.mobileappt20.smarttracking.ui.gallery
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
