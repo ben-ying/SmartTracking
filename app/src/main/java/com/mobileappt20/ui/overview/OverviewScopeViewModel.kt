@@ -1,13 +1,13 @@
-package com.mobileappt20.smarttracking.ui.home
+package com.mobileappt20.ui.overview
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class OverviewScopeViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "This is overview scope Fragment"
     }
     val text: LiveData<String> = _text
 }

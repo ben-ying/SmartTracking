@@ -1,4 +1,4 @@
-package com.mobileappt20.smarttracking.ui.add
+package com.mobileappt20.ui.add
 
 import android.os.Bundle
 import android.util.Log
@@ -11,8 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.mobileappt20.smarttracking.R
-import com.mobileappt20.smarttracking.databinding.FragmentAddScopeBinding
+import com.mobileappt20.R
+import com.mobileappt20.databinding.FragmentAddScopeBinding
 import kotlinx.coroutines.launch
 
 class AddScopeFragment : Fragment() {

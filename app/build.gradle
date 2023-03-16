@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.mobileappt20.smarttracking'
+    namespace 'com.mobileappt20'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.mobileappt20.smarttracking"
+        applicationId "com.mobileappt20"
         minSdk 28
         targetSdk 33
         versionCode 1

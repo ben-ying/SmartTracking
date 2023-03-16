@@ -1,13 +1,13 @@
-package com.mobileappt20.smarttracking.ui.overview
+package com.mobileappt20.ui.gallery
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class OverviewScopeViewModel : ViewModel() {
+class GalleryViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is overview scope Fragment"
+        value = "This is gallery Fragment"
     }
     val text: LiveData<String> = _text
 }

@@ -1,4 +1,4 @@
-package com.mobileappt20.smarttracking
+package com.mobileappt20
 
 import org.junit.Test
 

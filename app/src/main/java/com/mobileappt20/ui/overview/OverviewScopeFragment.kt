@@ -1,4 +1,4 @@
-package com.mobileappt20.smarttracking.ui.overview
+package com.mobileappt20.ui.overview
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.mobileappt20.smarttracking.R
-import com.mobileappt20.smarttracking.databinding.FragmentOverviewScopeBinding
+import com.mobileappt20.R
+import com.mobileappt20.databinding.FragmentOverviewScopeBinding
 
 class OverviewScopeFragment : Fragment() {
 
