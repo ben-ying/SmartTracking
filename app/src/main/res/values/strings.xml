@@ -11,6 +11,10 @@
     <string name="overview_of_scope_scheduling">Overview of Scope Scheduling</string>
     <string name="overview">Overview</string>
     <string name="no_scope">No Scope</string>
+    <string name="scope_a">Scope A</string>
+    <string name="scope_b">Scope B</string>
+    <string name="scope_c">Scope C</string>
+    <string name="scope_d">Scope D</string>
     <string name="add_scope">Add Scope</string>
     <string name="scope_img" translatable="false">Scope Image</string>
     <string name="prev_btn" translatable="false">Previous button</string>

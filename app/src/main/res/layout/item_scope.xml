@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,56 +11,74 @@
         android:id="@+id/scopeImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/scope_img"
         android:src="@mipmap/scope_img"
-        android:contentDescription="@string/scope_img" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/scopeTitle"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/scopeImage"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:textColor="@color/white"
-        android:maxLines="2"
-        android:maxEms="12"
-        android:text="@string/no_scope"
-        tools:text="Scope A"
-        tools:ignore="RelativeOverlap" />
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/nav_header_vertical_spacing"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/scopeImage"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/scopeDatetime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/scopeTitle"
-        android:layout_alignStart="@+id/scopeTitle"
-        android:textColor="@color/white"
-        android:textSize="@dimen/small_font"
-        android:layout_toStartOf="@+id/prevBtn"
-        tools:text="Scheduled at 6/1/2023 10am " />
+        <TextView
+            android:id="@+id/scopeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/scopeImage"
+            android:maxEms="12"
+            android:maxLines="2"
+            android:text="@string/no_scope"
+            android:textColor="@color/white"
+            tools:text="Scope A" />
+
+        <TextView
+            android:id="@+id/scopeDatetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/scopeTitle"
+            android:layout_alignStart="@+id/scopeTitle"
+            android:layout_toStartOf="@+id/prevBtn"
+            android:textColor="@color/white"
+            android:textSize="@dimen/small_font"
+            android:visibility="gone"
+            tools:text="Scheduled at 6/1/2023 10am" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
     <ImageButton
         android:id="@+id/prevBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/scopeImage"
+        android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/activity_vertical_margin"
         android:background="@color/transparent"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/scopeImage"
-        android:visibility="gone"
+        android:contentDescription="@string/prev_btn"
         android:src="@mipmap/arrow_up"
-        android:contentDescription="@string/prev_btn" />
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/nextBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/scopeImage"
+        android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/activity_vertical_margin"
         android:background="@color/transparent"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/scopeImage"
-        android:visibility="gone"
-        android:src="@mipmap/arrow_up"
+        android:contentDescription="@string/next_btn"
         android:rotation="180"
-        android:contentDescription="@string/next_btn" />
-</RelativeLayout>
+        android:src="@mipmap/arrow_up"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

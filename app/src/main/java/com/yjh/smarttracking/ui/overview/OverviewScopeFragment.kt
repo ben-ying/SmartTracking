@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.yjh.smarttracking.MainActivity
 import com.yjh.smarttracking.R
 import com.yjh.smarttracking.databinding.FragmentOverviewScopeBinding
 
