@@ -11,6 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.mobileappt20.R
 import com.mobileappt20.databinding.FragmentAddScopeBinding
 import kotlinx.coroutines.launch
@@ -22,6 +24,7 @@ class AddScopeFragment : Fragment() {
     private val binding get() = _binding!!
     private var scopeIndex = 0
     private val viewModel: AddScopeViewModel by viewModels()
+    private val firestore = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +52,22 @@ class AddScopeFragment : Fragment() {
         }
         binding.scopeLayout.nextBtn.setOnClickListener {
             viewModel.setScopeIndex(scopeIndex, 1)
+        }
+        binding.addScopeBtn.setOnClickListener {
+            // Create a new user with a first and last name
+            val user = hashMapOf(
+                "first" to "Ada",
+                "last" to "Lovelace",
+                "born" to 1815
+            )
+            firestore.collection("scopes")
+                .add(user)
+                .addOnSuccessListener { documentReference ->
+                    Log.d("AddScopeFragment", "DocumentSnapshot added with ID: ${documentReference.id}")
+                }
+                .addOnFailureListener { e ->
+                    Log.w("AddScopeFragment", "Error adding document", e)
+                }
         }
 
         return binding.root

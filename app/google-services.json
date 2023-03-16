@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "621786365676",
+    "firebase_url": "https://mobile-app-t20-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "mobile-app-t20",
+    "storage_bucket": "mobile-app-t20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:621786365676:android:c2386699c70c082a582fc9",
+        "android_client_info": {
+          "package_name": "com.mobileappt20"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "621786365676-dig2tmkia076hrauir3d397ic5c5i44q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCqWcAnNh4NuHocGmfRqfjaO-ty9XULng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "621786365676-dig2tmkia076hrauir3d397ic5c5i44q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
