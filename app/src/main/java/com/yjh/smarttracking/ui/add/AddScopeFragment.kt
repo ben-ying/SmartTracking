@@ -1,43 +1,55 @@
 package com.yjh.smarttracking.ui.add
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.yjh.smarttracking.R
 import com.yjh.smarttracking.databinding.FragmentAddScopeBinding
+import kotlinx.coroutines.launch
 
 class AddScopeFragment : Fragment() {
 
     private var _binding: FragmentAddScopeBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     private var scopeIndex = 0
+    private val viewModel: AddScopeViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect {
+                    scopeIndex = it.scopeIndex
+                    displayScope()
+                    Log.d("AddScopeFragment", "scopeIndex: ${it.scopeIndex}")
+                }
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this)[AddScopeViewModel::class.java]
-
         _binding = FragmentAddScopeBinding.inflate(inflater, container, false)
         binding.scopeLayout.prevBtn.isVisible = true
         binding.scopeLayout.nextBtn.isVisible = true
         binding.scopeLayout.prevBtn.setOnClickListener {
-            setScopeIndex(-1)
+            viewModel.setScopeIndex(scopeIndex, -1)
         }
         binding.scopeLayout.nextBtn.setOnClickListener {
-            setScopeIndex(1)
+            viewModel.setScopeIndex(scopeIndex, 1)
         }
-
-        displayScope()
 
         return binding.root
     }
@@ -61,16 +73,6 @@ class AddScopeFragment : Fragment() {
                 binding.scopeLayout.scopeTitle.setText(R.string.scope_d)
             }
         }
-    }
-
-    private fun setScopeIndex(delta: Int) {
-        scopeIndex += delta
-        if (scopeIndex > 3) {
-            scopeIndex = 0
-        } else if (scopeIndex < 0) {
-            scopeIndex = 3
-        }
-        displayScope()
     }
 
     override fun onDestroyView() {
