@@ -49,6 +49,7 @@ class AddScopeFragment : Fragment() {
                             R.string.scope_created_successfully,
                             Toast.LENGTH_LONG
                         ).show()
+                        requireActivity().onBackPressedDispatcher.onBackPressed()
                     } else if (it.action == Action.CREATE_SCOPE_FAILED) {
                         Toast.makeText(
                             requireContext(),

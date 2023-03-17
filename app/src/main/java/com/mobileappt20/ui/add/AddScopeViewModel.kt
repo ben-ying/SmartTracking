@@ -4,6 +4,9 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.mobileappt20.data.Scope.Companion.CREATE_TIME
+import com.mobileappt20.data.Scope.Companion.NAME
+import com.mobileappt20.data.Scope.Companion.SCHEDULE_TIME
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -57,9 +60,9 @@ class AddScopeViewModel : ViewModel() {
         collection: String
     ) {
         val scope = hashMapOf(
-            "name" to name,
-            "scheduleTime" to scheduleTime,
-            "createTime" to createTime,
+            NAME to name,
+            SCHEDULE_TIME to scheduleTime,
+            CREATE_TIME to createTime,
         )
         firestore.collection(collection)
             .add(scope)
