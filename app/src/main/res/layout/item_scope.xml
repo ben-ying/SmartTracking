@@ -18,10 +18,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginStart="@dimen/nav_header_vertical_spacing"
+        android:layout_marginStart="@dimen/scope_start_margin"
+        android:layout_marginEnd="@dimen/scope_end_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/scopeImage"
         app:layout_constraintTop_toTopOf="parent">
@@ -47,6 +48,7 @@
             android:layout_toStartOf="@+id/prevBtn"
             android:textColor="@color/white"
             android:textSize="@dimen/small_font"
+            android:maxLines="2"
             android:visibility="gone"
             tools:text="Scheduled at 6/1/2023 10am" />
 

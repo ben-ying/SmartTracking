@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.update
 
 enum class Action {
     CREATE_SCOPE_SUCCESS,
+    CREATE_SCOPE_COMPLETE,
     CREATE_SCOPE_FAILED,
     NONE
 }
@@ -81,6 +82,13 @@ class AddScopeViewModel : ViewModel() {
                     currentState.copy(
                         action = Action.CREATE_SCOPE_FAILED,
                         documentReferenceId = null
+                    )
+                }
+            }
+            .addOnCompleteListener {
+                _createScopeUiState.update { currentState ->
+                    currentState.copy(
+                        action = Action.CREATE_SCOPE_COMPLETE,
                     )
                 }
             }

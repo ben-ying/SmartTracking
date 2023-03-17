@@ -9,4 +9,6 @@
     <dimen name="small_font">12sp</dimen>
     <dimen name="large_font">20sp</dimen>
     <dimen name="bg_radius">8dp</dimen>
+    <dimen name="scope_start_margin">116dp</dimen>
+    <dimen name="scope_end_margin">48dp</dimen>
 </resources>
