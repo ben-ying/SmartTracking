@@ -79,18 +79,21 @@ class AddScopeFragment : Fragment() {
             viewModel.setScopeIndex(scopeIndex, 1)
         }
         val calendarView = binding.calendarLayout.calendarView
+        val clock = binding.calendarLayout.clock
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             this.year = year
-            this.month = month + 1
+            this.month = month
             this.dayOfMonth = dayOfMonth
         }
         binding.addScopeBtn.setOnClickListener {
             binding.progressLayout.progressBar.isVisible = true
+            val selectedCalendar: Calendar = Calendar.getInstance()
+            selectedCalendar.set(year, month, dayOfMonth)
             viewModel.createScope(
                 scopeName,
-                Calendar.getInstance().timeInMillis,
-                calendarView.date,
-                "scopes/$year/$month/$dayOfMonth/scope"
+                Calendar.getInstance().time.time,
+                selectedCalendar.timeInMillis,
+                "scopes/$year/${month + 1}/$dayOfMonth/scope"
             )
         }
 

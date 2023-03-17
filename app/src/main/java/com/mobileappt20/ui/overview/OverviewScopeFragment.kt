@@ -15,8 +15,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.DocumentSnapshot
 import com.mobileappt20.R
-import com.mobileappt20.data.Scope.Companion.CREATE_TIME
 import com.mobileappt20.data.Scope.Companion.NAME
+import com.mobileappt20.data.Scope.Companion.SCHEDULE_TIME
+import com.mobileappt20.data.Scope.Companion.TIME
 import com.mobileappt20.databinding.FragmentOverviewScopeBinding
 import kotlinx.coroutines.launch
 import java.text.DateFormat
@@ -120,10 +121,10 @@ class OverviewScopeFragment : Fragment() {
     private fun displayScopeItem(scope: DocumentSnapshot) {
         binding.scopeLayout.scopeTitle.text = scope.get(NAME).toString()
         try {
-            val date = Date(scope.get(CREATE_TIME).toString().toLong())
+            val date = Date(scope.get(SCHEDULE_TIME).toString().toLong())
             binding.scopeLayout.scopeDatetime.text = String.format(
                 getString(R.string.schedule_at),
-                DateFormat.getDateInstance().format(date)
+                DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(date)
             )
         } catch (e: Exception) {
             e.printStackTrace()
