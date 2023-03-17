@@ -19,6 +19,7 @@
     <string name="scope_img" translatable="false">Scope Image</string>
     <string name="prev_btn" translatable="false">Previous button</string>
     <string name="next_btn" translatable="false">Next button</string>
+    <string name="retrieve_scope_failed">Retrieve scope failed!</string>
 
     <string name="add">Add</string>
     <string name="scope_created_successfully">Scope created successfully!</string>
