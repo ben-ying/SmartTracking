@@ -21,6 +21,8 @@
     <string name="next_btn" translatable="false">Next button</string>
 
     <string name="add">Add</string>
+    <string name="scope_created_successfully">Scope created successfully!</string>
+    <string name="scope_created_failed">Scope created failed!</string>
 
 
     <string name="menu_gallery">Gallery</string>
