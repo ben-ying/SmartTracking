@@ -17,7 +17,6 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.mobileappt20.R
 import com.mobileappt20.data.Scope.Companion.NAME
 import com.mobileappt20.data.Scope.Companion.SCHEDULE_TIME
-import com.mobileappt20.data.Scope.Companion.TIME
 import com.mobileappt20.databinding.FragmentOverviewScopeBinding
 import kotlinx.coroutines.launch
 import java.text.DateFormat
