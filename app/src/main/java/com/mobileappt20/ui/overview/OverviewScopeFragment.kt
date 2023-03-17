@@ -13,16 +13,21 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.firestore.DocumentSnapshot
 import com.mobileappt20.R
+import com.mobileappt20.data.Scope.Companion.CREATE_TIME
 import com.mobileappt20.data.Scope.Companion.NAME
 import com.mobileappt20.data.Scope.Companion.SCHEDULE_TIME
 import com.mobileappt20.databinding.FragmentOverviewScopeBinding
 import kotlinx.coroutines.launch
+import java.text.DateFormat
 import java.util.*
 
 class OverviewScopeFragment : Fragment() {
 
     private var _binding: FragmentOverviewScopeBinding? = null
+    private var scopeIndex = 0
+    private var documents: List<DocumentSnapshot> = listOf()
 
     private val binding get() = _binding!!
     private val viewModel: OverviewScopeViewModel by viewModels()
@@ -32,23 +37,31 @@ class OverviewScopeFragment : Fragment() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.scopeIndexUiState.collect {
+                    scopeIndex = it.scopeIndex
+                    if (documents.size > scopeIndex) {
+                        displayScopeItem(documents[scopeIndex])
+                    }
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.retrieveScopeUiState.collect {
-                    binding.progressLayout.progressBar.isVisible = false
+                    if (it.action != Action.NONE) {
+                        binding.progressLayout.progressBar.isVisible = false
+                    }
                     if (it.action == Action.RETRIEVE_SCOPE_SUCCESS) {
                         Log.d("test", "documents: ${it.documents}")
+                        documents = it.documents
                         if (it.documents.size == 1) {
-                            binding.scopeLayout.scopeTitle.text =
-                                it.documents[0].get(NAME).toString()
-                            binding.scopeLayout.scopeDatetime.text =
-                                it.documents[0].get(SCHEDULE_TIME).toString()
+                            displayScopeItem(documents[0])
                             binding.scopeLayout.scopeDatetime.isVisible = true
                             binding.scopeLayout.prevBtn.isVisible = false
                             binding.scopeLayout.nextBtn.isVisible = false
                         } else if (it.documents.size > 1) {
-                            binding.scopeLayout.scopeTitle.text =
-                                it.documents[0].get(NAME).toString()
-                            binding.scopeLayout.scopeDatetime.text =
-                                it.documents[0].get(SCHEDULE_TIME).toString()
+                            displayScopeItem(documents[0])
                             binding.scopeLayout.scopeDatetime.isVisible = true
                             binding.scopeLayout.prevBtn.isVisible = true
                             binding.scopeLayout.nextBtn.isVisible = true
@@ -90,6 +103,12 @@ class OverviewScopeFragment : Fragment() {
             binding.progressLayout.progressBar.isVisible = true
             viewModel.retrieveScope("scopes/$year/${month + 1}/$dayOfMonth/scope")
         }
+        binding.scopeLayout.prevBtn.setOnClickListener {
+            viewModel.setScopeIndex(scopeIndex - 1)
+        }
+        binding.scopeLayout.nextBtn.setOnClickListener {
+            viewModel.setScopeIndex(scopeIndex + 1)
+        }
 
         return binding.root
     }
@@ -97,5 +116,19 @@ class OverviewScopeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun displayScopeItem(scope: DocumentSnapshot) {
+        binding.scopeLayout.scopeTitle.text = scope.get(NAME).toString()
+        try {
+            val date = Date(scope.get(CREATE_TIME).toString().toLong())
+            binding.scopeLayout.scopeDatetime.text = String.format(
+                getString(R.string.schedule_at),
+                DateFormat.getDateInstance().format(date)
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+            binding.scopeLayout.scopeDatetime.isVisible = false
+        }
     }
 }

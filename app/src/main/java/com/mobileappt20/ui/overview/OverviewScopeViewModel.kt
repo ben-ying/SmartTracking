@@ -27,9 +27,33 @@ class OverviewScopeViewModel : ViewModel() {
         const val TAG = "OverviewScopeViewModel"
     }
 
+    data class ScopeIndexUiState(
+        val scopeIndex: Int = 0,
+    )
+
+    private val _scopeIndexUiState = MutableStateFlow(ScopeIndexUiState(0))
+    val scopeIndexUiState: StateFlow<ScopeIndexUiState> = _scopeIndexUiState.asStateFlow()
     private val _retrieveScopeUiState = MutableStateFlow(RetrieveScopeUiState())
     val retrieveScopeUiState: StateFlow<RetrieveScopeUiState> = _retrieveScopeUiState.asStateFlow()
     private val firestore = Firebase.firestore
+    private var documents = listOf<DocumentSnapshot>()
+
+    fun setScopeIndex(index: Int) {
+        if (documents.size < 2) return
+        var scopeIndex = index
+
+        if (scopeIndex < 0) {
+            scopeIndex = documents.size - 1
+        } else if (scopeIndex > documents.size - 1) {
+            scopeIndex = 0
+        }
+
+        _scopeIndexUiState.update { currentState ->
+            currentState.copy(
+                scopeIndex = scopeIndex,
+            )
+        }
+    }
 
     fun retrieveScope(collection: String) {
         firestore.collection(collection)
@@ -37,18 +61,20 @@ class OverviewScopeViewModel : ViewModel() {
             .addOnSuccessListener { querySnapshot ->
                 Log.d(TAG, "Retrieve documents: ${querySnapshot.documents}")
                 _retrieveScopeUiState.update { currentState ->
+                    documents = querySnapshot.documents
                     currentState.copy(
                         action = Action.RETRIEVE_SCOPE_SUCCESS,
-                        documents = querySnapshot.documents
+                        documents = documents
                     )
                 }
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error retrieve documents", e)
                 _retrieveScopeUiState.update { currentState ->
+                    documents = listOf()
                     currentState.copy(
                         action = Action.RETRIEVE_SCOPE_FAILED,
-                        documents = listOf()
+                        documents = documents
                     )
                 }
             }

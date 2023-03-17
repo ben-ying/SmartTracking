@@ -42,7 +42,9 @@ class AddScopeFragment : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.createScopeUiState.collect {
-                    binding.progressLayout.progressBar.isVisible = false
+                    if (it.action != Action.NONE) {
+                        binding.progressLayout.progressBar.isVisible = false
+                    }
                     if (it.action == Action.CREATE_SCOPE_SUCCESS) {
                         Toast.makeText(
                             requireContext(),
