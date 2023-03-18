@@ -93,6 +93,7 @@ class OverviewScopeFragment : Fragment() {
         }
 
         binding.progressLayout.progressBar.isVisible = true
+        binding.calendarLayout.clock.isVisible = true
         val y = Calendar.getInstance().get(Calendar.YEAR)
         val m = Calendar.getInstance().get(Calendar.MONTH)
         val d = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)

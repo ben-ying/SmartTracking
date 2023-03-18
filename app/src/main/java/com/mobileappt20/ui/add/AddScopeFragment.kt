@@ -1,6 +1,8 @@
 package com.mobileappt20.ui.add
 
+import android.app.TimePickerDialog
 import android.os.Bundle
+import android.text.format.DateFormat.is24HourFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +16,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.mobileappt20.R
 import com.mobileappt20.databinding.FragmentAddScopeBinding
 import kotlinx.coroutines.launch
+import java.text.DateFormat
 import java.util.*
 
 
@@ -28,6 +31,8 @@ class AddScopeFragment : Fragment() {
     private var year = Calendar.getInstance().get(Calendar.YEAR)
     private var month = Calendar.getInstance().get(Calendar.MONTH) + 1
     private var dayOfMonth = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+    private var hour = Calendar.getInstance()[Calendar.HOUR_OF_DAY]
+    private var minute = Calendar.getInstance()[Calendar.MINUTE]
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +75,26 @@ class AddScopeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddScopeBinding.inflate(inflater, container, false)
+        val time: String = DateFormat.getTimeInstance(DateFormat.SHORT).format(Date())
+        binding.calendarLayout.timeText.isVisible = true
+        binding.calendarLayout.timeText.text = time
+        binding.calendarLayout.timeText.setOnClickListener {
+            val timePickerDialog = TimePickerDialog(
+                requireContext(),
+                { _, selectedHour, selectedMinute ->
+                    hour = selectedHour
+                    minute = selectedMinute
+                    val calendar = Calendar.getInstance()
+                    calendar[Calendar.HOUR_OF_DAY] = hour
+                    calendar[Calendar.MINUTE] = minute
+                    binding.calendarLayout.timeText.text =
+                        DateFormat.getTimeInstance(DateFormat.SHORT)
+                            .format(Date(calendar.timeInMillis))
+                }, hour, minute, is24HourFormat(requireContext())
+            )
+            timePickerDialog.setTitle(R.string.select_time)
+            timePickerDialog.show()
+        }
         binding.scopeLayout.prevBtn.isVisible = true
         binding.scopeLayout.nextBtn.isVisible = true
         binding.scopeLayout.prevBtn.setOnClickListener {
@@ -79,7 +104,6 @@ class AddScopeFragment : Fragment() {
             viewModel.setScopeIndex(scopeIndex, 1)
         }
         val calendarView = binding.calendarLayout.calendarView
-        val clock = binding.calendarLayout.clock
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             this.year = year
             this.month = month
@@ -88,7 +112,7 @@ class AddScopeFragment : Fragment() {
         binding.addScopeBtn.setOnClickListener {
             binding.progressLayout.progressBar.isVisible = true
             val selectedCalendar: Calendar = Calendar.getInstance()
-            selectedCalendar.set(year, month, dayOfMonth)
+            selectedCalendar.set(year, month, dayOfMonth, hour, minute)
             viewModel.createScope(
                 scopeName,
                 Calendar.getInstance().time.time,

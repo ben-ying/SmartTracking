@@ -32,6 +32,7 @@
 
     <TextClock
         android:id="@+id/clock"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/grey_bg"
@@ -40,4 +41,17 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/calendarView"
         app:layout_constraintEnd_toEndOf="parent"  />
+
+    <TextView
+        android:id="@+id/timeText"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/grey_bg"
+        android:padding="@dimen/nav_header_vertical_spacing"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/calendarView"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="12:00 PM"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
