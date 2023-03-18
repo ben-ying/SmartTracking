@@ -35,7 +35,7 @@
         android:background="@drawable/light_purple_bg"
         android:text="@string/add"
         android:textColor="@color/white"
-        android:layout_marginBottom="@dimen/activity_large_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_middle_vertical_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
